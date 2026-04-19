@@ -1,0 +1,254 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "UTP Ecommerce API",
+        "description": "Backend API ecommerce sederhana dengan mock data JSON",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "Local Server"
+        }
+    ],
+    "paths": {
+        "/api/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Ambil semua produk",
+                "operationId": "1bfaa78d1c2c3848ab8165c5dadcad3e",
+                "responses": {
+                    "200": {
+                        "description": "List semua produk"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Tambah produk baru",
+                "operationId": "e8185e307706e2cd84bbcf5171e2f09d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama_barang",
+                                    "harga"
+                                ],
+                                "properties": {
+                                    "nama_barang": {
+                                        "type": "string",
+                                        "example": "Headset Gaming"
+                                    },
+                                    "harga": {
+                                        "type": "number",
+                                        "example": 450000
+                                    },
+                                    "stok": {
+                                        "type": "integer",
+                                        "example": 20
+                                    },
+                                    "kategori": {
+                                        "type": "string",
+                                        "example": "Aksesoris"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string",
+                                        "example": "Headset dengan noise cancelling"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Produk berhasil ditambahkan"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            }
+        },
+        "/api/products/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Ambil produk by ID",
+                "operationId": "7ab21ddb713501f3d4c2914892c02a21",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data produk ditemukan"
+                    },
+                    "404": {
+                        "description": "Produk tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Update seluruh data produk",
+                "operationId": "6a7e11900844cd85cff66e662b82bd4c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama_barang",
+                                    "harga",
+                                    "stok",
+                                    "kategori",
+                                    "deskripsi"
+                                ],
+                                "properties": {
+                                    "nama_barang": {
+                                        "type": "string",
+                                        "example": "Laptop Baru"
+                                    },
+                                    "harga": {
+                                        "type": "number",
+                                        "example": 9000000
+                                    },
+                                    "stok": {
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "kategori": {
+                                        "type": "string",
+                                        "example": "Elektronik"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string",
+                                        "example": "Update seluruh data"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Produk berhasil diperbarui"
+                    },
+                    "404": {
+                        "description": "Produk tidak ditemukan"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Hapus produk by ID",
+                "operationId": "e80a6ca46716acee6b47ea1ac91663c0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Produk berhasil dihapus"
+                    },
+                    "404": {
+                        "description": "Produk tidak ditemukan"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Update sebagian data produk",
+                "operationId": "4f6c6244eacfb66239ee33c5476c0b73",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "harga": {
+                                        "type": "number",
+                                        "example": 7500000
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Produk berhasil diperbarui sebagian"
+                    },
+                    "404": {
+                        "description": "Produk tidak ditemukan"
+                    },
+                    "400": {
+                        "description": "Tidak ada data yang dikirim"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Products",
+            "description": "Products"
+        }
+    ]
+}
